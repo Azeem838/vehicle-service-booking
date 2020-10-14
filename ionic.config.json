@@ -1,0 +1,7 @@
+{
+  "name": "vehicle-service-booking",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
