@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import React from 'react';
-import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
+import { IonApp, IonRedirect, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
@@ -27,26 +27,35 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import { RootStateOrAny, useSelector } from 'react-redux';
+import Services from './pages/Services';
 
 const App: React.FC = () => {
 
   const user = useSelector((state: RootStateOrAny) => state.userData)
 
   return (
-    <IonApp>      
-      <IonReactRouter>
-        <IonSplitPane contentId="main">
-          {user !== undefined ? (<Menu />) : null}
-          <IonRouterOutlet id="main">
-          {user !== undefined ? ( 
-            <Route path="/appointments" component={Appointments} exact /> )
-          : ( <Redirect to="/login" /> )}
-          <Route path="/" component={Home} exact />
-          <Route path="/login" component={Login} exact />
-          <Route path="/register" component={Register} exact />
-          </IonRouterOutlet>
-        </IonSplitPane>
-      </IonReactRouter>
+    <IonApp>
+      <>
+        {user !== undefined ? (
+          <IonReactRouter>
+            <IonSplitPane contentId="main">
+              <Menu />
+              <IonRouterOutlet id="main">   
+                <Route path="/appointments" component={Appointments} exact /> 
+                <Route path="/services" component={Services} exact />
+                <Redirect from="/" to="/appointments" exact />
+              </IonRouterOutlet>
+            </IonSplitPane>
+          </IonReactRouter>
+        ) : (
+          <IonReactRouter>
+            <Route path="/home" component={Home} exact />
+            <Route path="/register" component={Register} exact />
+            <Route path="/login" component={Login} exact />
+            <Redirect from="/" to="/home" exact />
+          </IonReactRouter>
+        )}
+      </>
     </IonApp>
   );
 
