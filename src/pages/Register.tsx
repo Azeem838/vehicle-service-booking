@@ -40,6 +40,7 @@ const Register: React.FC = () => {
     }
 
     registerUser(username, email, password).then(user => {
+      setBusy(false)
       if(user.error) {
         toast(user.error, 4000)
       } else {
@@ -48,7 +49,6 @@ const Register: React.FC = () => {
         history.push('/appointments')
       }
     });    
-    setBusy(false)
   }
 
   return (
