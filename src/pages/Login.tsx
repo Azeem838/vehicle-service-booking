@@ -22,25 +22,14 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
-  const history = useHistory()
-  const user = useSelector((state: RootStateOrAny) => state.userData)
-  const token = user ? user.token : ''
-
-  useEffect(() => {
-    const autoUser = request(token, 'auto_login', 'GET', {}).then(data => {return data})
-    if (autoUser) {
-      history.replace('/appointments')
-    }
-  }, [])
-  
-  // console.log(req !== undefined ? req.message : '')
-  
+  const history = useHistory()  
 
   const dispatch = useDispatch()
 
   const login = () => {
     setBusy(true)
-    loginUser(username, email, password).then(user => {
+    loginUser('azeem', 'azeem@example.com', 'sample').then(user => {
+      setBusy(false)
       if(user.error) {
         toast(user.error, 4000)
       } else {
@@ -49,7 +38,6 @@ const Login: React.FC = () => {
         history.push('/appointments')
       }
     });    
-    setBusy(false)
   }
   
 
@@ -64,7 +52,7 @@ const Login: React.FC = () => {
       <IonContent className="ion-padding">
         <IonInput placeholder="Username" onIonChange={(e: any) => {setUsername(e.target.value)}} />
         <IonInput placeholder="Email" onIonChange={(e: any) => {setEmail(e.target.value)}} />
-        <IonInput type="password" placeholder="Password" onIonChange={(e: any) => {setPassword(e.target.value)}}/>
+        <IonInput type="password" placeholder="Password" onIonChange={(e: any) => {setPassword(e.target.value)}} />
         <IonButton onClick={login}>Login</IonButton>
         <p>New here? <Link to="/register">Register</Link></p>
 
