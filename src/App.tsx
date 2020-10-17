@@ -36,7 +36,7 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <>
-        {user !== undefined ? (
+        {user ? (
           <IonReactRouter>
             <IonSplitPane contentId="main">
               <Menu />
@@ -46,6 +46,7 @@ const App: React.FC = () => {
                 <Redirect from="/" to="/appointments" exact />
               </IonRouterOutlet>
             </IonSplitPane>
+            <Route path="/home" component={Home} exact />
           </IonReactRouter>
         ) : (
           <IonReactRouter>
