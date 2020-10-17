@@ -11,10 +11,11 @@ import {
 } from '@ionic/react';
 
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { listOutline, mailOutline} from 'ionicons/icons';
+import { useHistory, useLocation } from 'react-router-dom';
+import { hammerOutline, listOutline, logOutOutline, mailOutline} from 'ionicons/icons';
 import './Menu.css';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { setLogout} from '../actions/index'
 
 interface AppPage {
   url: string;
@@ -31,10 +32,10 @@ const appPages: AppPage[] = [
     mdIcon: listOutline
   },
   {
-    title: 'Login',
-    url: '/login',
+    title: 'Services',
+    url: '/services',
     iosIcon: mailOutline,
-    mdIcon: listOutline
+    mdIcon: hammerOutline
   },
 ];
 
@@ -43,10 +44,9 @@ const Menu: React.FC = () => {
   const location = useLocation();
   
   const user = useSelector((state: RootStateOrAny) => state.userData.user)
-  // const user = {
-  //   username: 'Azeem',
-  //   email: 'azeem@example.com'
-  // }
+  const dispatch = useDispatch()  
+
+  const handleLogout = () => dispatch(setLogout())
 
   return (
     <IonMenu contentId="main" type="overlay">
@@ -64,6 +64,12 @@ const Menu: React.FC = () => {
               </IonMenuToggle>
             );
           })}
+          <IonMenuToggle autoHide={false}>
+            <IonItem className={location.pathname === 'logout' ? 'selected' : ''} onClick={handleLogout} routerDirection="none" lines="inset" detail={false}>
+              <IonIcon slot="start" ios={mailOutline} md={logOutOutline} />
+              <IonLabel>Logout</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
         </IonList>
       </IonContent>
     </IonMenu>
