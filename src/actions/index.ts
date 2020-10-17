@@ -5,8 +5,22 @@ export const setUser = (user: any) => {
   }
 }
 
-export const logOut = () => {
+export const setLogout = () => {
   return {
       type: "LOG_OUT"
+  }
+}
+
+export const setUserAppointments = (appointments: any) => {
+  return {
+    type: "SET_APPOINTMENTS",
+    appointments
+  }
+}
+
+export const setServices = (services: any) => {
+  return {
+    type: "SET_SERVICES",
+    services
   }
 }
