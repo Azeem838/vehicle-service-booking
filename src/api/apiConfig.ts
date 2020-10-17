@@ -61,11 +61,10 @@ export async function request(token:string, path:string, method:string, body:obj
   
   const  res = await fetch(`http://localhost:3000/${path}`, requestConfig)
   const response = await res.json()
-  console.log(response)
-  toast(response.message)
   return response
 }
   catch(error){
-    toast(error.message)
+    const res = {error: 'Please check your internet connection'}
+    return res
   }
 }
