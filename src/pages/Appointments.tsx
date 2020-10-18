@@ -30,6 +30,7 @@ const Appointments: React.FC = () => {
           toast(user.error, 4000)
         } else {
           dispatch(setUserAppointments(data[0]))
+          console.log(data[0])
           dispatch(setServices(data[1]))
         }
       })
@@ -63,13 +64,13 @@ const Appointments: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonLoading message="Registration in Progress..." duration={0} isOpen={busy} /> 
-        <IonButton className="ion-margin" expand="full" href='#'>Book a service</IonButton>
+        <IonButton className="ion-margin" expand="full" routerLink="/serviceform" >{userAppoint !== undefined && userAppoint.length > 0 ? 'Book another service' : 'Book your first service'}</IonButton>
 
-
-          {userAppoint ? (            
-            <IonGrid>
+          {userAppoint ? userAppoint.map((appoint: any) => {
+            return (
+              <IonGrid key={appoint.id + Math.random()}>
               <IonRow className='ion-justify-content-center'>
-                <h3>Your next service: {moment(userAppoint[0].start_time).fromNow()}</h3>
+                <h3>Your next service: {moment(appoint.start_time).fromNow()}</h3>
               </IonRow>
                 <IonRow className="ion-justify-content-around">
 
@@ -81,21 +82,21 @@ const Appointments: React.FC = () => {
                             <IonLabel>Date & Time</IonLabel>
                           </IonChip>
                       </IonItem>
-                      <div className="ion-text-center"><IonLabel>{moment(userAppoint[0].start_time).format('MMMM Do YYYY, h:mm:ss a')}</IonLabel></div>
+                      <div className="ion-text-center"><IonLabel>{moment(appoint.start_time).format('MMMM Do YYYY, h:mm:ss a')}</IonLabel></div>
           
                       <IonItem>
                         <IonChip color="success" style={{maxWidth: "100%", margin: "0 auto"}}>
                           <IonLabel>Service Type</IonLabel>
                         </IonChip>
                       </IonItem>
-                      <div className="ion-text-center"><IonLabel>{userAppoint[0].service_type}</IonLabel></div>
+                      <div className="ion-text-center"><IonLabel>{appoint.service_type}</IonLabel></div>
 
                       <IonItem>
                         <IonChip color="success" style={{maxWidth: "100%", margin: "0 auto"}}>
                           <IonLabel>Description</IonLabel>
                         </IonChip>
                       </IonItem>
-                      <div className="ion-text-center"><IonLabel>{userAppoint[0].description}</IonLabel></div>
+                      <div className="ion-text-center"><IonLabel>{appoint.description}</IonLabel></div>
 
         
                       <IonItem>
@@ -103,7 +104,7 @@ const Appointments: React.FC = () => {
                           <IonLabel>Estimated Time</IonLabel>
                         </IonChip>
                       </IonItem>
-                      <div className="ion-text-center"><IonLabel>{userAppoint[0].allocated_time} hours</IonLabel></div>
+                      <div className="ion-text-center"><IonLabel>{appoint.allocated_time} hours</IonLabel></div>
 
                     </IonList>
                   </IonCol>
@@ -113,9 +114,15 @@ const Appointments: React.FC = () => {
                   </IonCol>
                 </IonRow>
             </IonGrid>
-
-            ) : (
+            )
+          }) : (
+            <>
               <IonLoading message="Getting your services..." duration={0} isOpen={busy} /> 
+              <IonHeader>
+                <IonTitle>No Appointments yet...</IonTitle>
+                <IonButton routerLink="/serviceform">Book your first service</IonButton>
+            </IonHeader>
+            </>
             )
           }              
         </IonContent>
