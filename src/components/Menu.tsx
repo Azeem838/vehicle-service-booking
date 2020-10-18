@@ -11,8 +11,8 @@ import {
 } from '@ionic/react';
 
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { hammerOutline, listOutline, logOutOutline, mailOutline} from 'ionicons/icons';
+import { useLocation } from 'react-router-dom';
+import { hammerOutline, listOutline, logOutOutline, mailOutline, documentTextOutline} from 'ionicons/icons';
 import './Menu.css';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { setLogout} from '../actions/index'
@@ -36,6 +36,12 @@ const appPages: AppPage[] = [
     url: '/services',
     iosIcon: mailOutline,
     mdIcon: hammerOutline
+  },
+  {
+    title: 'Book a service',
+    url: '/serviceform',
+    iosIcon: mailOutline,
+    mdIcon: documentTextOutline
   },
 ];
 
