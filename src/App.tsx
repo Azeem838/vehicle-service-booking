@@ -3,6 +3,7 @@ import Appointments from './pages/Appointments';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ServiceForm from './pages/ServiceForm';
 import React from 'react';
 import { IonApp, IonRedirect, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
@@ -43,6 +44,7 @@ const App: React.FC = () => {
               <IonRouterOutlet id="main">   
                 <Route path="/appointments" component={Appointments} exact /> 
                 <Route path="/services" component={Services} exact />
+                <Route path="/serviceform" component={ServiceForm} exact />
                 <Redirect from="/" to="/appointments" exact />
               </IonRouterOutlet>
             </IonSplitPane>
