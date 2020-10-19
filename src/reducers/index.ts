@@ -1,12 +1,4 @@
-const initState = {
-  userData: {
-    token: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.JC6qKuH9SG0SIiYSfhZUFTtirxN9Q47buLk0DPFFFzE",
-    user: {
-      email: "azeem@example.com",
-      username: "azeem"
-    }
-  }
-}
+const initState = {}
 
 export default function reducer(state=initState, action: any): any {
   switch (action.type) {

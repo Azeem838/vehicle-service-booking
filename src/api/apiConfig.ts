@@ -1,6 +1,4 @@
-import { toast } from '../components/toast';
-
-export async function loginUser(username: string, email: string, password: string) {
+export async function loginUser(username: string, password: string) {
   try {
       const res = await fetch('http://localhost:3000/login', {
     method: "POST",
@@ -10,7 +8,6 @@ export async function loginUser(username: string, email: string, password: strin
     },
     body: JSON.stringify({
       username, 
-      email, 
       password
     })
   })

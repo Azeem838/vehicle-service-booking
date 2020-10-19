@@ -1,9 +1,8 @@
-import { IonAvatar, IonButton, IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonItem, IonLabel, IonList, IonListHeader, IonLoading, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
+import { IonButton, IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonItem, IonLabel, IonList, IonLoading, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
 import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { setUserAppointments, setServices } from '../actions';
 import { request } from '../api/apiConfig';
-import ExploreContainer from '../components/ExploreContainer';
 import { toast } from '../components/toast';
 import './Page.css';
 import SericeImage from '../assets/images/mechanic-apps.png'
@@ -41,7 +40,7 @@ const Appointments: React.FC = () => {
       const service = services.filter((service: any) => {
         return service.id === app.service_id
       })
-      Object.assign(app, service[0])
+      return Object.assign(app, service[0])
     })
   }
 

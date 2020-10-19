@@ -83,7 +83,7 @@ const ServiceForm: React.FC = () => {
     const description = data.description
     reset()
 
-    const appRequest = request(user.token, 'appointments', 'POST', {
+    request(user.token, 'appointments', 'POST', {
         "service_id": `${service_id}`,
         "start_time": `${start_time}`,
         "end_time": `${end_time}`,

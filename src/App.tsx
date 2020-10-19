@@ -5,9 +5,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ServiceForm from './pages/ServiceForm';
 import React from 'react';
-import { IonApp, IonRedirect, IonRouterOutlet, IonSplitPane } from '@ionic/react';
+import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
