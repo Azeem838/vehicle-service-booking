@@ -29,7 +29,6 @@ const Appointments: React.FC = () => {
           toast(user.error, 4000)
         } else {
           dispatch(setUserAppointments(data[0]))
-          console.log(data[0])
           dispatch(setServices(data[1]))
         }
       })

@@ -46,7 +46,6 @@ const Login: React.FC = () => {
   const dispatch = useDispatch()
 
   const login = (data: any) => {
-    console.log(data)
     setBusy(true)
     loginUser(`${data.username}`, `${data.password}`).then(user => {
       setBusy(false)
