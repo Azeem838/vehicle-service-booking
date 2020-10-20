@@ -1,42 +1,52 @@
-import { IonButton, IonButtons, IonContent, IonHeader, IonLoading, IonMenuButton, IonPage, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
+import {
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonLoading,
+  IonMenuButton,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  useIonViewWillEnter,
+} from '@ionic/react';
 import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { setUserAppointments } from '../actions';
 import { request } from '../api/apiConfig';
-import { toast } from '../components/toast';
+import toast from '../components/toast';
 import AppointmentItem from '../components/AppointmentItem';
 
 const Appointments: React.FC = () => {
+  const user = useSelector((state: RootStateOrAny) => state.userData);
+  const userAppoint = useSelector(
+    (state: RootStateOrAny) => state.appointments,
+  );
+  const services = useSelector((state: RootStateOrAny) => state.services);
+  const [busy, setBusy] = useState<boolean>(false);
 
-  const user = useSelector((state: RootStateOrAny) => state.userData)
-  const userAppoint = useSelector((state: RootStateOrAny) => state.appointments) 
-  const services = useSelector((state: RootStateOrAny) => state.services)
-  const [busy, setBusy] = useState<boolean>(false)
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useIonViewWillEnter(() => {
-    setBusy(true)
-    request(user.token, 'appointments', 'GET', {})
-    .then(data => {
-      setBusy(false)
-      if(data.error) {
-        toast(user.error, 4000)
+    setBusy(true);
+    request(user.token, 'appointments', 'GET', {}).then(data => {
+      setBusy(false);
+      if (data.error) {
+        toast(user.error, 4000);
       } else {
-        dispatch(setUserAppointments(data))
+        dispatch(setUserAppointments(data));
       }
-    })
-  })
+    });
+  });
 
-  if(userAppoint && services) {
+  if (userAppoint && services) {
     userAppoint.map((app: any) => {
-      const service = services.filter((service: any) => {
-        return service.id === app.service_id
-      })
-      return Object.assign(app, service[0])
-    })
+      const service = services.filter(
+        (service: any) => service.id === app.service_id,
+      );
+      return Object.assign(app, service[0]);
+    });
   }
-
 
   return (
     <IonPage>
@@ -55,24 +65,44 @@ const Appointments: React.FC = () => {
             <IonTitle size="large">Appontments</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonLoading message="Registration in Progress..." duration={0} isOpen={busy} /> 
-        <IonButton className="ion-margin" expand="full" routerLink="/serviceform" >{userAppoint !== undefined && userAppoint.length > 0 ? 'Book another service' : 'Book your first service'}</IonButton>
+        <IonLoading
+          message="Registration in Progress..."
+          duration={0}
+          isOpen={busy}
+        />
+        <IonButton
+          className="ion-margin"
+          expand="full"
+          routerLink="/serviceform"
+        >
+          {userAppoint !== undefined && userAppoint.length > 0
+            ? 'Book another service'
+            : 'Book your first service'}
+        </IonButton>
 
-          {userAppoint ? userAppoint.map((appoint: any) => {
-            return (
-              <AppointmentItem key={appoint.id + Math.random()} appoint={appoint} />
-              )
-          }) : (
-            <>
-              <IonLoading message="Getting your services..." duration={0} isOpen={busy} /> 
-              <IonHeader>
-                <IonTitle>No Appointments yet...</IonTitle>
-                <IonButton routerLink="/serviceform">Book your first service</IonButton>
+        {userAppoint ? (
+          userAppoint.map((appoint: any) => (
+            <AppointmentItem
+              key={appoint.id + Math.random()}
+              appoint={appoint}
+            />
+          ))
+        ) : (
+          <>
+            <IonLoading
+              message="Getting your services..."
+              duration={0}
+              isOpen={busy}
+            />
+            <IonHeader>
+              <IonTitle>No Appointments yet...</IonTitle>
+              <IonButton routerLink="/serviceform">
+                Book your first service
+              </IonButton>
             </IonHeader>
-            </>
-            )
-          }              
-        </IonContent>
+          </>
+        )}
+      </IonContent>
     </IonPage>
   );
 };

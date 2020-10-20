@@ -1,13 +1,14 @@
+import React from 'react';
+import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
+import { Redirect, Route } from 'react-router-dom';
+import { RootStateOrAny, useSelector } from 'react-redux';
 import Menu from './components/Menu';
 import Appointments from './pages/Appointments';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ServiceForm from './pages/ServiceForm';
-import React from 'react';
-import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route } from 'react-router-dom';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -27,12 +28,10 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import { RootStateOrAny, useSelector } from 'react-redux';
 import Services from './pages/Services';
 
 const App: React.FC = () => {
-
-  const user = useSelector((state: RootStateOrAny) => state.userData)
+  const user = useSelector((state: RootStateOrAny) => state.userData);
 
   return (
     <IonApp>
@@ -41,9 +40,9 @@ const App: React.FC = () => {
           <IonReactRouter>
             <IonSplitPane contentId="main">
               <Menu />
-              <IonRouterOutlet id="main">   
+              <IonRouterOutlet id="main">
                 <Route path="/services" component={Services} exact />
-                <Route path="/appointments" component={Appointments} exact /> 
+                <Route path="/appointments" component={Appointments} exact />
                 <Route path="/serviceform" component={ServiceForm} exact />
                 <Redirect from="/" to="/appointments" exact />
               </IonRouterOutlet>
@@ -61,7 +60,6 @@ const App: React.FC = () => {
       </>
     </IonApp>
   );
-
 };
 
 export default App;

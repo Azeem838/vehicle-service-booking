@@ -1,24 +1,25 @@
-const initState = {}
+const initState = {};
 
-export default function reducer(state=initState, action: any): any {
+export default function reducer(state = initState, action: any): any {
   switch (action.type) {
     case 'SET_USER':
       return {
         ...state,
-        userData: action.user
-      }
+        userData: action.user,
+      };
     case 'LOG_OUT':
-      return {}
+      return {};
     case 'SET_APPOINTMENTS':
       return {
         ...state,
-        appointments: action.appointments
-      }
+        appointments: action.appointments,
+      };
     case 'SET_SERVICES':
       return {
         ...state,
-        services: action.services
-      }
+        services: action.services,
+      };
+    default:
+      return state;
   }
-  return state
 }

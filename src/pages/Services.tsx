@@ -1,44 +1,59 @@
-import { IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonLabel, IonLoading, IonMenuButton, IonPage, IonRow, IonSegment, IonSegmentButton, IonTitle, IonToolbar, useIonViewWillEnter} from '@ionic/react';
+import {
+  IonButtons,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonHeader,
+  IonLabel,
+  IonLoading,
+  IonMenuButton,
+  IonPage,
+  IonRow,
+  IonSegment,
+  IonSegmentButton,
+  IonTitle,
+  IonToolbar,
+  useIonViewWillEnter,
+} from '@ionic/react';
 import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { request } from '../api/apiConfig';
-import { toast } from '../components/toast';
+import toast from '../components/toast';
 import { setServices } from '../actions';
 
 import ServiceDetails from '../components/ServiceDetails';
 import ServiceItem from '../components/ServiceItem';
 
 const Services: React.FC = () => {
-  const user = useSelector((state: RootStateOrAny) => state.userData)
+  const user = useSelector((state: RootStateOrAny) => state.userData);
 
-  const services = useSelector((state: RootStateOrAny) => state.services)
-  const dispatch = useDispatch()
+  const services = useSelector((state: RootStateOrAny) => state.services);
+  const dispatch = useDispatch();
 
-  const [active, setActive] = useState<string>('all')
-  const [busy, setBusy] = useState<boolean>(false)
+  const [active, setActive] = useState<string>('all');
+  const [busy, setBusy] = useState<boolean>(false);
 
   const handleActive = (e: any) => {
-    const val = e.target.value
-    setActive(val)
-  }
+    const val = e.target.value;
+    setActive(val);
+  };
 
   const handleCardClick = (e: any) => {
-    const val = e.target.id
-    setActive(val)
-  }
+    const val = e.target.id;
+    setActive(val);
+  };
 
   useIonViewWillEnter(() => {
-    setBusy(true)
-    request(user.token, 'services', 'GET', {})
-    .then((data: any) => {
-      setBusy(false)
-      if(data.error) {
-        toast(user.error, 4000)
+    setBusy(true);
+    request(user.token, 'services', 'GET', {}).then((data: any) => {
+      setBusy(false);
+      if (data.error) {
+        toast(user.error, 4000);
       } else {
-        dispatch(setServices(data))
+        dispatch(setServices(data));
       }
-    })
-  })
+    });
+  });
 
   return (
     <IonPage>
@@ -50,7 +65,11 @@ const Services: React.FC = () => {
           <IonTitle>Services</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonLoading message="Registration in Progress..." duration={0} isOpen={busy} /> 
+      <IonLoading
+        message="Registration in Progress..."
+        duration={0}
+        isOpen={busy}
+      />
 
       <IonContent fullscreen>
         <IonHeader collapse="condense">
@@ -76,36 +95,54 @@ const Services: React.FC = () => {
           </IonSegment>
         </IonToolbar>
 
-        <IonGrid style={ active === `all` ? {display: "inline"} : {display: "none"}}>
+        <IonGrid
+          style={active === 'all' ? { display: 'inline' } : { display: 'none' }}
+        >
           <IonRow>
             <IonCol>
-              <div className="ion-text-center"><IonTitle size="large">Choose your service</IonTitle></div>
-              <IonTitle className="ion-text-center" size="small">Select a service to learn more</IonTitle>              
+              <div className="ion-text-center">
+                <IonTitle size="large">Choose your service</IonTitle>
+              </div>
+              <IonTitle className="ion-text-center" size="small">
+                Select a service to learn more
+              </IonTitle>
             </IonCol>
           </IonRow>
 
-          <IonRow className='ion-justify-content-center'>
-              {services ? services.map((service: any) => {
-                return (
-                  <ServiceItem key={service.id} service={service} handleCardClick={handleCardClick} />
-                )
-              }) : (
-                <IonLoading message="Getting your services..." duration={0} isOpen={busy} />   
-              )
-            }
+          <IonRow className="ion-justify-content-center">
+            {services ? (
+              services.map((service: any) => (
+                <ServiceItem
+                  key={service.id}
+                  service={service}
+                  handleCardClick={handleCardClick}
+                />
+              ))
+            ) : (
+              <IonLoading
+                message="Getting your services..."
+                duration={0}
+                isOpen={busy}
+              />
+            )}
           </IonRow>
         </IonGrid>
 
-
-
-        { services ? services.map((service: any) => {
-          return (
-            <ServiceDetails key={service.id} service={service} active={active} />
-          )
-        }) :  (
-          <IonLoading message="Getting your services..." duration={0} isOpen={busy} />           
-        )
-      }
+        {services ? (
+          services.map((service: any) => (
+            <ServiceDetails
+              key={service.id}
+              service={service}
+              active={active}
+            />
+          ))
+        ) : (
+          <IonLoading
+            message="Getting your services..."
+            duration={0}
+            isOpen={busy}
+          />
+        )}
       </IonContent>
     </IonPage>
   );

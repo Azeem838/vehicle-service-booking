@@ -1,4 +1,4 @@
-import { 
+import {
   IonPage,
   IonButton,
   IonInput,
@@ -13,19 +13,19 @@ import {
 } from '@ionic/react';
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useForm } from "react-hook-form";
-import Input, { InputProps } from "../components/Input";
-import { object, string } from "yup";
-import { toast } from '../components/toast';
-import {registerUser} from '../api/apiConfig'
+import { useForm } from 'react-hook-form';
+import { object, string } from 'yup';
 import { useDispatch } from 'react-redux';
+import Input, { InputProps } from '../components/Input';
+import toast from '../components/toast';
+import { registerUser } from '../api/apiConfig';
 import { setUser } from '../actions';
 
 const Register: React.FC = () => {
-  const [busy, setBusy] = useState<boolean>(false)
-  const dispatch = useDispatch()
-  const history = useHistory()
-  
+  const [busy, setBusy] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const validationSchema = object().shape({
     email: string().required().email(),
     username: string().required().min(5).max(32),
@@ -38,82 +38,96 @@ const Register: React.FC = () => {
 
   const formFields: InputProps[] = [
     {
-      name: "email",
+      name: 'email',
       component: <IonInput type="email" />,
-      label: "Email",
+      label: 'Email',
     },
     {
-      name: "username",
-      label: "Username",
+      name: 'username',
+      component: <IonInput type="text" />,
+      label: 'Username',
     },
     {
-      name: "password",
+      name: 'password',
       component: <IonInput type="password" clearOnEdit={false} />,
-      label: "Password",
+      label: 'Password',
     },
     {
-      name: "cpassword",
+      name: 'cpassword',
       component: <IonInput type="password" clearOnEdit={false} />,
-      label: "Confirm Password",
+      label: 'Confirm Password',
     },
   ];
 
   const register = (data: any) => {
-    setBusy(true)
+    setBusy(true);
 
-    if(data.password !== data.cpassword) {
-      toast('Passwords do not match')
-      return setBusy(false)
+    if (data.password !== data.cpassword) {
+      toast('Passwords do not match');
+      return setBusy(false);
     }
     if (data.username.trim() === '' || data.password.trim() === '') {
-      toast('Username and Password are required')
-      return setBusy(false)
+      toast('Username and Password are required');
+      return setBusy(false);
     }
 
-    registerUser(data.username, data.email, data.password).then(user => {
-      setBusy(false)
-      if(user.error) {
-        toast(user.error, 4000)
+    return registerUser(data.username, data.email, data.password).then(user => {
+      setBusy(false);
+      if (user.error) {
+        toast(user.error, 4000);
       } else {
-        toast('Registration successful')
-        dispatch(setUser(user))
-        history.push('/appointments')
+        toast('Registration successful');
+        dispatch(setUser(user));
+        history.push('/services');
       }
-    });    
-  }
+    });
+  };
 
   return (
-    <IonPage style={{backgroundColor: "#fcb402"}}>
-        <IonGrid>
-          <IonRow className="ion-align-items-center" style={{height: "100%"}}>
-            <IonCol>
-              <div className="ion-padding">
-                <IonText color="muted">
-                  <h2>Create Account</h2>
-                </IonText>
-                <IonLoading message="Please wait..." duration={0} isOpen={busy} /> 
-      
-                <form onSubmit={handleSubmit(register)}>
-                  {formFields.map((field, index) => (
-                    <Input {...field} control={control} key={index} errors={errors} />
-                  ))}
-      
-                  <IonItem>
-                    <IonLabel>I agree to the terms of service</IonLabel>
-                    <IonCheckbox slot="start" />
-                  </IonItem>
-                  <IonButton expand="block" type="submit" className="ion-margin-top">
-                    Register
-                  </IonButton>
-                </form>
-                <p>Already have an account? <Link style={{color: "white"}} to="/login">Login</Link> </p>
-              </div>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+    <IonPage style={{ backgroundColor: '#fcb402' }}>
+      <IonGrid>
+        <IonRow className="ion-align-items-center" style={{ height: '100%' }}>
+          <IonCol>
+            <div className="ion-padding">
+              <IonText color="muted">
+                <h2>Create Account</h2>
+              </IonText>
+              <IonLoading message="Please wait..." duration={0} isOpen={busy} />
+
+              <form onSubmit={handleSubmit(register)}>
+                {formFields.map(field => (
+                  <Input
+                    {...field}
+                    control={control}
+                    key={Math.random()}
+                    errors={errors}
+                  />
+                ))}
+
+                <IonItem>
+                  <IonLabel>I agree to the terms of service</IonLabel>
+                  <IonCheckbox slot="start" />
+                </IonItem>
+                <IonButton
+                  expand="block"
+                  type="submit"
+                  className="ion-margin-top"
+                >
+                  Register
+                </IonButton>
+              </form>
+              <p>
+                Already have an account?
+                <Link style={{ color: 'white' }} to="/login">
+                  Login
+                </Link>
+              </p>
+            </div>
+          </IonCol>
+        </IonRow>
+      </IonGrid>
     </IonPage>
   );
-  
 };
 
 export default Register;
