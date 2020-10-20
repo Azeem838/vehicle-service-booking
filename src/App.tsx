@@ -42,8 +42,8 @@ const App: React.FC = () => {
             <IonSplitPane contentId="main">
               <Menu />
               <IonRouterOutlet id="main">   
-                <Route path="/appointments" component={Appointments} exact /> 
                 <Route path="/services" component={Services} exact />
+                <Route path="/appointments" component={Appointments} exact /> 
                 <Route path="/serviceform" component={ServiceForm} exact />
                 <Redirect from="/" to="/appointments" exact />
               </IonRouterOutlet>
