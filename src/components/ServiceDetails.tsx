@@ -45,12 +45,14 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, active }) => (
         </IonButton>
         <p>
           Typically:
-          {service.allocated_time}
           {' '}
+          {service.allocated_time}
+          {' '}          
           hours
         </p>
         <h3>
           What is a
+          {' '}
           {service.service_type === 'Other'
             ? 'Custom Service'
             : service.service_type}
