@@ -2,7 +2,6 @@
 import {
   IonContent,
   IonPage,
-  IonText,
   IonInput,
   IonButton,
   IonCheckbox,
@@ -11,6 +10,11 @@ import {
   IonSelect,
   IonSelectOption,
   IonDatetime,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonMenuButton,
+  IonTitle,
 } from "@ionic/react";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -92,17 +96,20 @@ const ServiceForm: React.FC = () => {
       toast(res.message, 3000)
       history.push('/appointments')
     })
-
   };
 
   return (
     <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
+          <IonTitle>New Service Appointment</IonTitle>
+        </IonToolbar>
+      </IonHeader>
       <IonContent>
         <div className="ion-padding">
-          <IonText color="muted">
-            <h2>New Service Appointment</h2>
-          </IonText>
-
           <form onSubmit={handleSubmit(newAppointment)}>
             {formFields.map((field, index) => (
               <Input {...field} control={control} key={index} errors={errors} />
