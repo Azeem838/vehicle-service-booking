@@ -54,34 +54,34 @@ const Login: React.FC = () => {
       } else {
         toast('Login successful')
         dispatch(setUser(user))
-        history.push('/appointments')
+        history.push('/services')
       }
     });    
   }
   
 
   return (
-    <IonPage>
+    <IonPage style={{backgroundColor: "#fcb402"}}>
       <IonGrid>
-        <IonRow>
+        <IonRow className="ion-align-items-center" style={{height: "100%"}}>
           <IonCol>
-              <div className="ion-padding">
-                <IonText color="muted">
-                  <div className="ion-text-center"><h2>Login</h2></div>
-                </IonText>
-                <IonLoading message="Please wait..." duration={0} isOpen={busy} /> 
-      
-                <form onSubmit={handleSubmit(login)}>
-                  {formFields.map((field, index) => (
-                    <Input {...field} control={control} key={index} errors={errors} />
-                  ))}
-      
-                  <IonButton expand="block" type="submit" className="ion-margin-top">
-                    Login
-                  </IonButton>
-                </form>
-                <p>New here? <Link to="/register">Register</Link></p>
-              </div>
+            <div className="ion-padding">
+              <IonText color="muted">
+                <div className="ion-text-center"><h2>Login</h2></div>
+              </IonText>
+              <IonLoading message="Please wait..." duration={0} isOpen={busy} /> 
+    
+              <form onSubmit={handleSubmit(login)}>
+                {formFields.map((field, index) => (
+                  <Input {...field} control={control} key={index} errors={errors} />
+                ))}
+    
+                <IonButton expand="block" type="submit" className="ion-margin-top">
+                  Login
+                </IonButton>
+              </form>
+              <p>New here? <Link style={{color: "white"}} to="/register">Register</Link></p>
+            </div>
           </IonCol>
         </IonRow>
       </IonGrid>
