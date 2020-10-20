@@ -1,12 +1,10 @@
-import { IonButton, IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonItem, IonLabel, IonList, IonLoading, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonHeader, IonLoading, IonMenuButton, IonPage, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
 import React, { useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { setUserAppointments, setServices } from '../actions';
+import { setUserAppointments } from '../actions';
 import { request } from '../api/apiConfig';
 import { toast } from '../components/toast';
-import './Page.css';
-import SericeImage from '../assets/images/mechanic-apps.png'
-import moment from 'moment';
+import AppointmentItem from '../components/AppointmentItem';
 
 const Appointments: React.FC = () => {
 
@@ -19,19 +17,15 @@ const Appointments: React.FC = () => {
 
   useIonViewWillEnter(() => {
     setBusy(true)
-    const appRequest = request(user.token, 'appointments', 'GET', {})
-    const serviceRequest = request(user.token, 'services', 'GET', {})
-
-    Promise.all([appRequest, serviceRequest])
-      .then(data => {
-        setBusy(false)
-        if(data[0].error || data[1].error) {
-          toast(user.error, 4000)
-        } else {
-          dispatch(setUserAppointments(data[0]))
-          dispatch(setServices(data[1]))
-        }
-      })
+    request(user.token, 'appointments', 'GET', {})
+    .then(data => {
+      setBusy(false)
+      if(data.error) {
+        toast(user.error, 4000)
+      } else {
+        dispatch(setUserAppointments(data))
+      }
+    })
   })
 
   if(userAppoint && services) {
@@ -66,53 +60,8 @@ const Appointments: React.FC = () => {
 
           {userAppoint ? userAppoint.map((appoint: any) => {
             return (
-              <IonGrid key={appoint.id + Math.random()}>
-              <IonRow className='ion-justify-content-center'>
-                <h3>Your next service: {moment(appoint.start_time).fromNow()}</h3>
-              </IonRow>
-                <IonRow className="ion-justify-content-around">
-
-                  <IonCol sizeXs="10" sizeMd="4" >
-                    <IonList lines="none">
-
-                      <IonItem>
-                          <IonChip color="success" style={{maxWidth: "100%", margin: "0 auto"}}>
-                            <IonLabel>Date & Time</IonLabel>
-                          </IonChip>
-                      </IonItem>
-                      <div className="ion-text-center"><IonLabel>{moment(appoint.start_time).format('MMMM Do YYYY, h:mm:ss a')}</IonLabel></div>
-          
-                      <IonItem>
-                        <IonChip color="success" style={{maxWidth: "100%", margin: "0 auto"}}>
-                          <IonLabel>Service Type</IonLabel>
-                        </IonChip>
-                      </IonItem>
-                      <div className="ion-text-center"><IonLabel>{appoint.service_type}</IonLabel></div>
-
-                      <IonItem>
-                        <IonChip color="success" style={{maxWidth: "100%", margin: "0 auto"}}>
-                          <IonLabel>Description</IonLabel>
-                        </IonChip>
-                      </IonItem>
-                      <div className="ion-text-center"><IonLabel>{appoint.description}</IonLabel></div>
-
-        
-                      <IonItem>
-                        <IonChip color="success" style={{maxWidth: "100%", margin: "0 auto"}}>
-                          <IonLabel>Estimated Time</IonLabel>
-                        </IonChip>
-                      </IonItem>
-                      <div className="ion-text-center"><IonLabel>{appoint.allocated_time} hours</IonLabel></div>
-
-                    </IonList>
-                  </IonCol>
-
-                  <IonCol sizeXs="10" sizeMd="6" sizeXl="4">
-                    <img alt="appointment" src={SericeImage} /> 
-                  </IonCol>
-                </IonRow>
-            </IonGrid>
-            )
+              <AppointmentItem key={appoint.id + Math.random()} appoint={appoint} />
+              )
           }) : (
             <>
               <IonLoading message="Getting your services..." duration={0} isOpen={busy} /> 
