@@ -26,16 +26,16 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: 'Appointments',
-    url: '/appointments',
-    iosIcon: mailOutline,
-    mdIcon: listOutline
-  },
-  {
     title: 'Services',
     url: '/services',
     iosIcon: mailOutline,
     mdIcon: hammerOutline
+  },
+  {
+    title: 'Appointments',
+    url: '/appointments',
+    iosIcon: mailOutline,
+    mdIcon: listOutline
   },
   {
     title: 'Book a service',

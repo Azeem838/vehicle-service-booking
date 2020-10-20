@@ -45,11 +45,11 @@ ion-menu.md ion-item {
 }
 
 ion-menu.md ion-item.selected {
-  --background: rgba(var(--ion-color-primary-rgb), 0.14);
+  --background: var(--ion-color-primary);
 }
 
 ion-menu.md ion-item.selected ion-icon {
-  color: var(--ion-color-primary);
+  color: var(--ion-color-light);
 }
 
 ion-menu.md ion-item ion-icon {
@@ -85,7 +85,7 @@ ion-menu.ios ion-item ion-icon {
 }
 
 ion-menu.ios ion-item .selected ion-icon {
-  color: var(--ion-color-primary);
+  color: var(--ion-color-light);
 }
 
 ion-menu.ios ion-list#labels-list ion-list-header {
@@ -109,5 +109,5 @@ ion-note {
 }
 
 ion-item.selected {
-  --color: var(--ion-color-primary);
+  --color: var(--ion-color-light);
 } 
