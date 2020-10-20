@@ -83,9 +83,9 @@ const Register: React.FC = () => {
   }
 
   return (
-    <IonPage>
+    <IonPage style={{backgroundColor: "#fcb402"}}>
         <IonGrid>
-          <IonRow>
+          <IonRow className="ion-align-items-center" style={{height: "100%"}}>
             <IonCol>
               <div className="ion-padding">
                 <IonText color="muted">
@@ -106,7 +106,7 @@ const Register: React.FC = () => {
                     Register
                   </IonButton>
                 </form>
-                <p>Already have an account? <Link to="/login">Login</Link> </p>
+                <p>Already have an account? <Link style={{color: "white"}} to="/login">Login</Link> </p>
               </div>
             </IonCol>
           </IonRow>
