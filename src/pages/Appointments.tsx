@@ -88,19 +88,11 @@ const Appointments: React.FC = () => {
             />
           ))
         ) : (
-          <>
-            <IonLoading
-              message="Getting your services..."
-              duration={0}
-              isOpen={busy}
-            />
-            <IonHeader>
-              <IonTitle>No Appointments yet...</IonTitle>
-              <IonButton routerLink="/serviceform">
-                Book your first service
-              </IonButton>
-            </IonHeader>
-          </>
+          <IonLoading
+            message="Getting your services..."
+            duration={0}
+            isOpen={busy}
+          />
         )}
       </IonContent>
     </IonPage>
