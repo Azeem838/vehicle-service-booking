@@ -8,9 +8,10 @@ import {
   IonMenu,
   IonMenuToggle,
   IonNote,
+  IonToggle,
 } from '@ionic/react';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   hammerOutline,
@@ -18,6 +19,8 @@ import {
   logOutOutline,
   mailOutline,
   documentTextOutline,
+  moon,
+  sunnyOutline,
 } from 'ionicons/icons';
 import './Menu.css';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
@@ -59,12 +62,20 @@ const Menu: React.FC = () => {
 
   const handleLogout = () => dispatch(setLogout());
 
+  const [dark, setDark] = useState<boolean>(false);
+
+  const toggleDarkModeHandler = () => {
+    document.body.classList.toggle('dark');
+    setDark(!dark);
+  };
+
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
           <IonListHeader>
             Welcome
+            {' '}
             {user.username}
           </IonListHeader>
           <IonNote>{user.email}</IonNote>
@@ -86,6 +97,15 @@ const Menu: React.FC = () => {
               </IonItem>
             </IonMenuToggle>
           ))}
+          <IonItem lines="none">
+            <IonIcon slot="start" icon={dark ? sunnyOutline : moon} />
+            <IonLabel>Dark Mode</IonLabel>
+            <IonToggle
+              slot="end"
+              name="darkMode"
+              onIonChange={toggleDarkModeHandler}
+            />
+          </IonItem>
           <IonMenuToggle autoHide={false}>
             <IonItem
               className={location.pathname === 'logout' ? 'selected' : ''}
