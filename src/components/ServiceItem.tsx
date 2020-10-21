@@ -15,18 +15,20 @@ import ServiceImage from '../assets/images/mechanic-apps.png';
 export interface ServiceItemProps {
   service: any;
   handleCardClick: any;
+  icon: any;
 }
 
 const ServiceItem: React.FC<ServiceItemProps> = ({
   service,
   handleCardClick,
+  icon,
 }) => (
   <IonCol sizeXs="12" sizeMd="3">
     <IonCard style={{ boxShadow: 'none' }}>
       <div className="ion-text-center">
         <img
           style={{ borderRadius: '50%', width: '15em' }}
-          src={ServiceImage}
+          src={icon}
           alt="service"
         />
         <IonCardHeader>
@@ -38,7 +40,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
         <IonButton
           className="ion-margin-bottom"
           color="secondary"
-          id="Quick Service"
+          id={service.service_type}
           onClick={handleCardClick}
           fill="outline"
           expand="full"

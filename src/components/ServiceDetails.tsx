@@ -17,9 +17,10 @@ import Rey from '../assets/images/avatar-rey.png';
 export interface ServiceDetailsProps {
   service: any;
   active: any;
+  icon: any;
 }
 
-const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, active }) => (
+const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, active, icon }) => (
   <IonGrid
     className="ion-margin-horizontal"
     key={service.id}
@@ -33,7 +34,8 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, active }) => (
       <IonCol sizeXs="11" sizeMd="9">
         <img
           alt="service"
-          src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+          src={icon}
+          style={{ width: '10em' }}
         />
         <IonButton
           fill="outline"
@@ -47,7 +49,7 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, active }) => (
           Typically:
           {' '}
           {service.allocated_time}
-          {' '}          
+          {' '}
           hours
         </p>
         <h3>

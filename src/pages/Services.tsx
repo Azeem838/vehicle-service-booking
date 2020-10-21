@@ -20,7 +20,9 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { request } from '../api/apiConfig';
 import toast from '../components/toast';
 import { setServices } from '../actions';
-
+import mIcon1 from '../assets/images/mechanic-icon-1.png';
+import mIcon2 from '../assets/images/mechanic-icon-2.png';
+import mIcon3 from '../assets/images/mechanic-icon-3.png';
 import ServiceDetails from '../components/ServiceDetails';
 import ServiceItem from '../components/ServiceItem';
 
@@ -40,7 +42,20 @@ const Services: React.FC = () => {
 
   const handleCardClick = (e: any) => {
     const val = e.target.id;
+    console.log(val)
     setActive(val);
+  };
+
+  const handleIcon = (type: string) => {
+    if (type === 'Quick Service') {
+      return mIcon1;
+    }
+
+    if (type === 'Full Service') {
+      return mIcon2;
+    }
+
+    return mIcon3;
   };
 
   useIonViewWillEnter(() => {
@@ -116,6 +131,7 @@ const Services: React.FC = () => {
                   key={service.id}
                   service={service}
                   handleCardClick={handleCardClick}
+                  icon={handleIcon(service.service_type) || ''}
                 />
               ))
             ) : (
@@ -134,6 +150,7 @@ const Services: React.FC = () => {
               key={service.id}
               service={service}
               active={active}
+              icon={handleIcon(service.service_type) || ''}
             />
           ))
         ) : (
