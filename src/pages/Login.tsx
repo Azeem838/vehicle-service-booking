@@ -25,7 +25,9 @@ const Login: React.FC = () => {
     username: string().required(),
     password: string().required().min(6),
   });
-  const { control, handleSubmit, errors, reset } = useForm({
+  const {
+    control, handleSubmit, errors, reset,
+  } = useForm({
     validationSchema,
   });
 

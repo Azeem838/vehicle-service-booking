@@ -10,7 +10,6 @@ import {
 import React from 'react';
 import PropTypes from 'prop-types';
 import { logoInstagram, logoTwitter, logoFacebook } from 'ionicons/icons';
-import ServiceImage from '../assets/images/mechanic-apps.png';
 
 export interface ServiceItemProps {
   service: any;
@@ -73,6 +72,7 @@ ServiceItem.propTypes = {
     service_type: PropTypes.string,
   }).isRequired,
   handleCardClick: PropTypes.func.isRequired,
+  icon: PropTypes.string.isRequired,
 };
 
 export default ServiceItem;

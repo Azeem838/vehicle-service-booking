@@ -128,6 +128,7 @@ ServiceDetails.propTypes = {
     service_type: PropTypes.string.isRequired,
     allocated_time: PropTypes.number.isRequired,
   }).isRequired,
+  icon: PropTypes.string.isRequired,
 };
 
 export default ServiceDetails;

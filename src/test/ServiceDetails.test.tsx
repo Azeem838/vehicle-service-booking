@@ -1,23 +1,23 @@
-import React from 'react'
+import React from 'react';
 import { render, getByText, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import ServiceDetails from '../components/ServiceDetails';
-import { act } from 'react-dom/test-utils';
 
 const serviceDetails = {
   allocated_time: 3,
   id: 1,
-  service_type: "Quick Service"
-}
+  service_type: 'Quick Service',
+};
 
-const active = 'all'
+const active = 'all';
+
+const icon = './static/media/mechanic-icon-3.b81cb595.png';
 
 test('quick service details are displayed', () => {
   const { container } = render(
     <Router>
-      <ServiceDetails service={serviceDetails} active={active} />  
-    </Router>
+      <ServiceDetails icon={icon} service={serviceDetails} active={active} />
+    </Router>,
   );
 
   const allocatedTime = getByText(container, 'Typically: 3 hours');
@@ -27,4 +27,4 @@ test('quick service details are displayed', () => {
 
   expect(allocatedTime).toBeInTheDocument();
   expect(serviceType).toBeInTheDocument();
-})
+});

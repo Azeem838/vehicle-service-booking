@@ -1,23 +1,23 @@
-import React from 'react'
+import React from 'react';
 import { render, getByText } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import AppointmentItem from '../components/AppointmentItem'
+import AppointmentItem from '../components/AppointmentItem';
 
 const appoint = {
   allocated_time: 3,
-  description: "quick service test",
-  end_time: "2020-10-20T11:00:00.000Z",
+  description: 'quick service test',
+  end_time: '2020-10-20T11:00:00.000Z',
   id: 1,
   service_id: 1,
-  service_type: "Quick Service",
-  start_time: "2020-10-20T08:00:00.000Z",
+  service_type: 'Quick Service',
+  start_time: '2020-10-20T08:00:00.000Z',
   user_id: 1,
-}
+};
 
 test('appointment is displayed', () => {
   const { container } = render(
     <Router>
-      <AppointmentItem appoint={appoint} />  
+      <AppointmentItem appoint={appoint} />
     </Router>,
   );
 
@@ -28,4 +28,4 @@ test('appointment is displayed', () => {
   expect(description).toBeInTheDocument();
   expect(serviceType).toBeInTheDocument();
   expect(allocatedTime).toBeInTheDocument();
-})
+});

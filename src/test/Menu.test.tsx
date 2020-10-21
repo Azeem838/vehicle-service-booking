@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { render, getByText } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
-import Menu from '../components/Menu'
 import { Provider } from 'react-redux';
+import Menu from '../components/Menu';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -24,22 +24,22 @@ const mockStore = configureStore();
 const state = {
   userData: {
     user: {
-    email: "azeem@example.com",
-    id: 1,
-    password_digest: "$2a$12$KDu3d9ArzVYrXBehQElSCO.C..3bZjLKeRwdmDEAaPwe45UwdUPdS",
-    username: "azeem"
-    }
-  }
-}
+      email: 'azeem@example.com',
+      id: 1,
+      password_digest: '$2a$12$KDu3d9ArzVYrXBehQElSCO.C..3bZjLKeRwdmDEAaPwe45UwdUPdS',
+      username: 'azeem',
+    },
+  },
+};
 
 test('the menu is displayed', () => {
   const store = mockStore(state);
   const { container } = render(
     <Provider store={store}>
       <Router>
-        <Menu />  
+        <Menu />
       </Router>
-    </Provider>
+    </Provider>,
   );
 
   const services = getByText(container, 'Services');
@@ -49,4 +49,4 @@ test('the menu is displayed', () => {
   expect(services).toBeInTheDocument();
   expect(appointments).toBeInTheDocument();
   expect(serviceForm).toBeInTheDocument();
-})
+});

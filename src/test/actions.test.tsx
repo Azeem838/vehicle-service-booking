@@ -1,5 +1,7 @@
 import configureStore from 'redux-mock-store';
-import { setUser, setLogout, setUserAppointments, setServices } from '../actions/index';
+import {
+  setUser, setLogout, setUserAppointments, setServices,
+} from '../actions/index';
 
 const userDataTemplate = {};
 

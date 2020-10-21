@@ -1,8 +1,8 @@
 import reducer from '../reducers/index';
 
 const userDataTemplate = {};
-const appointsTemplate = {}
-const servicesTemplate = {}
+const appointsTemplate = {};
+const servicesTemplate = {};
 
 describe('reducer', () => {
   describe('INITIAL_STATE', () => {
@@ -22,7 +22,6 @@ describe('reducer', () => {
       expect(reducer(undefined, action)).toEqual(expectedState);
     });
   });
-
 
   describe('SET_APPOINTMENTS', () => {
     test('returns the changed state', () => {

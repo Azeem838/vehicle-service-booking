@@ -42,7 +42,6 @@ const Services: React.FC = () => {
 
   const handleCardClick = (e: any) => {
     const val = e.target.id;
-    console.log(val)
     setActive(val);
   };
 
