@@ -118,6 +118,7 @@ const Register: React.FC = () => {
               </form>
               <p>
                 Already have an account?
+                {' '}
                 <Link style={{ color: 'white' }} to="/login">
                   Login
                 </Link>

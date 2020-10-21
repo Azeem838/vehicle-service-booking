@@ -94,6 +94,7 @@ const Login: React.FC = () => {
               </form>
               <p>
                 New here?
+                {' '}
                 <Link style={{ color: 'white' }} to="/register">
                   Register
                 </Link>
