@@ -1,6 +1,6 @@
 export async function loginUser(username: string, password: string) {
   try {
-    const res = await fetch('http://localhost:3000/login', {
+    const res = await fetch('https://vehicle-service-booking-api.herokuapp.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export async function registerUser(
   password: string,
 ) {
   try {
-    const res = await fetch('http://localhost:3000/users', {
+    const res = await fetch('https://vehicle-service-booking-api.herokuapp.com/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ export async function request(
       Object.assign(requestConfig, { body: JSON.stringify(body) });
     }
 
-    const res = await fetch(`http://localhost:3000/${path}`, requestConfig);
+    const res = await fetch(`https://vehicle-service-booking-api.herokuapp.com/${path}`, requestConfig);
     const response = await res.json();
     return response;
   } catch (error) {
