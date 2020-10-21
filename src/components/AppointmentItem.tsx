@@ -21,6 +21,7 @@ const AppointmentItem: React.FC<AppointmentItemProps> = ({ appoint }) => (
     <IonRow className="ion-justify-content-center">
       <h3>
         Your next service:
+        {' '}
         {moment(appoint.start_time).fromNow()}
       </h3>
     </IonRow>
