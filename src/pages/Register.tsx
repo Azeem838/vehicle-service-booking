@@ -14,7 +14,6 @@ import {
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { object, string } from 'yup';
 import { useDispatch } from 'react-redux';
 import Input, { InputProps } from '../components/Input';
 import toast from '../components/toast';
@@ -26,35 +25,27 @@ const Register: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const validationSchema = object().shape({
-    email: string().required().email(),
-    username: string().required().min(5).max(32),
-    password: string().required().min(6),
-    cpassword: string().required().min(6),
-  });
-  const { control, handleSubmit, errors } = useForm({
-    validationSchema,
-  });
+  const { control, handleSubmit, errors } = useForm();
 
   const formFields: InputProps[] = [
     {
-      name: 'email',
-      component: <IonInput type="email" />,
-      label: 'Email',
-    },
-    {
       name: 'username',
-      component: <IonInput type="text" />,
+      component: <IonInput type="text" required />,
       label: 'Username',
     },
     {
+      name: 'email',
+      component: <IonInput type="email" required />,
+      label: 'Email',
+    },
+    {
       name: 'password',
-      component: <IonInput type="password" clearOnEdit={false} />,
+      component: <IonInput type="password" clearOnEdit={false} required />,
       label: 'Password',
     },
     {
       name: 'cpassword',
-      component: <IonInput type="password" clearOnEdit={false} />,
+      component: <IonInput type="password" clearOnEdit={false} required />,
       label: 'Confirm Password',
     },
   ];
@@ -62,12 +53,17 @@ const Register: React.FC = () => {
   const register = (data: any) => {
     setBusy(true);
 
-    if (data.password !== data.cpassword) {
-      toast('Passwords do not match');
-      return setBusy(false);
-    }
-    if (data.username.trim() === '' || data.password.trim() === '') {
-      toast('Username and Password are required');
+    try {
+      if (data.password !== data.cpassword) {
+        toast('Passwords do not match');
+        return setBusy(false);
+      }
+      if (data.username.trim() === '' || data.password.trim() === '') {
+        toast('Username and Password are required');
+        return setBusy(false);
+      }
+    } catch (error) {
+      toast("Required fields can't be blank");
       return setBusy(false);
     }
 

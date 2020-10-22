@@ -12,7 +12,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { object, string } from 'yup';
 import Input, { InputProps } from '../components/Input';
 import { loginUser } from '../api/apiConfig';
 import toast from '../components/toast';
@@ -21,25 +20,19 @@ import { setUser } from '../actions/index';
 const Login: React.FC = () => {
   const [busy, setBusy] = useState<boolean>(false);
 
-  const validationSchema = object().shape({
-    username: string().required(),
-    password: string().required().min(6),
-  });
   const {
     control, handleSubmit, errors, reset,
-  } = useForm({
-    validationSchema,
-  });
+  } = useForm();
 
   const formFields: InputProps[] = [
     {
       name: 'username',
-      component: <IonInput type="text" />,
+      component: <IonInput type="text" required />,
       label: 'Username',
     },
     {
       name: 'password',
-      component: <IonInput type="password" clearOnEdit={false} />,
+      component: <IonInput type="password" clearOnEdit={false} required />,
       label: 'Password',
     },
   ];
