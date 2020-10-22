@@ -79,7 +79,7 @@ To run the app locally, clone the repository and navigate to it's directory:
 
 ```bash
 https://github.com/Azeem838/vehicle-service-booking.git
-cd techStore
+cd vehicle-service-booking
 git checkout front-end-store
 npm install
 ionic-serve
@@ -98,7 +98,7 @@ npm run test
 ## "Nice To Have Requirements" that are implemented
 
 - Implemented proper user authentication from the front-end to the server
-- Created a user table in the database, so that a given user can only access the favourites they selected
+- Created a user table in the database, so that a given user can only access the appointments that they created
 - Made the app responsive, created both tablet and desktop versions, following design guidelines
 - Transitions were implemented to make the user experience better
 - Created full documentation for the API
