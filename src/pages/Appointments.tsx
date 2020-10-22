@@ -73,7 +73,7 @@ const Appointments: React.FC = () => {
         <IonButton
           className="ion-margin"
           expand="full"
-          routerLink="/serviceform"
+          routerLink="/vehicle-service-booking/serviceform"
         >
           {userAppoint !== undefined && userAppoint.length > 0
             ? 'Book another service'

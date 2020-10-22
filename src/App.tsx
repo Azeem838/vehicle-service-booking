@@ -41,20 +41,20 @@ const App: React.FC = () => {
             <IonSplitPane contentId="main">
               <Menu />
               <IonRouterOutlet id="main">
-                <Route path="/services" component={Services} exact />
-                <Route path="/appointments" component={Appointments} exact />
-                <Route path="/serviceform" component={ServiceForm} exact />
-                <Redirect from="/" to="/appointments" exact />
+                <Route path="/vehicle-service-booking/services" component={Services} exact />
+                <Route path="/vehicle-service-booking/appointments" component={Appointments} exact />
+                <Route path="/vehicle-service-booking/serviceform" component={ServiceForm} exact />
+                <Redirect from="/vehicle-service-booking" to="/vehicle-service-booking/appointments" exact />
               </IonRouterOutlet>
             </IonSplitPane>
             <Route path="/home" component={Home} exact />
           </IonReactRouter>
         ) : (
           <IonReactRouter>
-            <Route path="/home" component={Home} exact />
-            <Route path="/register" component={Register} exact />
-            <Route path="/login" component={Login} exact />
-            <Redirect from="/" to="/home" exact />
+            <Route path="/vehicle-service-booking/home" component={Home} exact />
+            <Route path="/vehicle-service-booking/register" component={Register} exact />
+            <Route path="/vehicle-service-booking/login" component={Login} exact />
+            <Redirect from="/vehicle-service-booking" to="/vehicle-service-booking/home" exact />
           </IonReactRouter>
         )}
       </>

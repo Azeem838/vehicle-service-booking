@@ -40,7 +40,7 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, active, icon }
         <IonButton
           fill="outline"
           strong
-          routerLink="/serviceform"
+          routerLink="/vehicle-service-booking/serviceform"
           className="ion-float-right"
         >
           Book Now

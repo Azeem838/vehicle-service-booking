@@ -36,19 +36,19 @@ interface AppPage {
 const appPages: AppPage[] = [
   {
     title: 'Services',
-    url: '/services',
+    url: '/vehicle-service-booking/services',
     iosIcon: mailOutline,
     mdIcon: hammerOutline,
   },
   {
     title: 'Appointments',
-    url: '/appointments',
+    url: '/vehicle-service-booking/appointments',
     iosIcon: mailOutline,
     mdIcon: listOutline,
   },
   {
     title: 'Book a service',
-    url: '/serviceform',
+    url: '/vehicle-service-booking/serviceform',
     iosIcon: mailOutline,
     mdIcon: documentTextOutline,
   },

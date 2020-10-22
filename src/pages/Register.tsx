@@ -74,7 +74,7 @@ const Register: React.FC = () => {
       } else {
         toast('Registration successful');
         dispatch(setUser(user));
-        history.push('/services');
+        history.push('/vehicle-service-booking/services');
       }
     });
   };

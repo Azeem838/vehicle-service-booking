@@ -126,7 +126,7 @@ const ServiceForm: React.FC = () => {
       description: `${description}`,
     }).then(res => {
       toast(res.message, 3000);
-      history.push('/appointments');
+      history.push('/vehicle-service-booking/appointments');
     });
   };
 

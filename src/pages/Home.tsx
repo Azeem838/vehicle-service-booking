@@ -24,10 +24,10 @@ const Home: React.FC = () => (
                   rebuilds - Book now to avoid disappointment
                 </p>
               </IonText>
-              <IonButton color="light" fill="outline" routerLink="/login">
+              <IonButton color="light" fill="outline" routerLink="/vehicle-service-booking/login">
                 Login
               </IonButton>
-              <IonButton color="light" routerLink="/register">
+              <IonButton color="light" routerLink="/vehicle-service-booking/register">
                 Register
               </IonButton>
             </div>
