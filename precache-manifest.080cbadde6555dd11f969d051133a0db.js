@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "76dd19d3493081764e780dcf11b32019",
+    "revision": "7997f628232e301bbdaac7d76b792d74",
     "url": "/vehicle-service-booking/index.html"
   },
   {

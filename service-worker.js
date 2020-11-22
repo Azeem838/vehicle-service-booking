@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/vehicle-service-booking/precache-manifest.9f0fbda67d6b729c4239034e7304b261.js"
+  "/vehicle-service-booking/precache-manifest.080cbadde6555dd11f969d051133a0db.js"
 );
 
 self.addEventListener('message', (event) => {
