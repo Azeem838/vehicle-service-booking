@@ -1,15 +1,15 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f3bf23a659fee60fa8fedf8eb75cea2d",
+    "revision": "76dd19d3493081764e780dcf11b32019",
     "url": "/vehicle-service-booking/index.html"
   },
   {
-    "revision": "07dc37b83d191b577d7e",
-    "url": "/vehicle-service-booking/static/css/4.00270a81.chunk.css"
+    "revision": "85d8560b3a596be9cf3f",
+    "url": "/vehicle-service-booking/static/css/4.8921c4c4.chunk.css"
   },
   {
-    "revision": "3929d2857255c7e28824",
-    "url": "/vehicle-service-booking/static/css/main.fbff66de.chunk.css"
+    "revision": "86a174bce154d484968a",
+    "url": "/vehicle-service-booking/static/css/main.fbd006f7.chunk.css"
   },
   {
     "revision": "1e3f5037cd8703dfa184",
@@ -140,12 +140,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/vehicle-service-booking/static/js/39.d472fc9c.chunk.js"
   },
   {
-    "revision": "07dc37b83d191b577d7e",
-    "url": "/vehicle-service-booking/static/js/4.87bacca7.chunk.js"
+    "revision": "85d8560b3a596be9cf3f",
+    "url": "/vehicle-service-booking/static/js/4.83e7d11b.chunk.js"
   },
   {
     "revision": "2593e898aee047a7f0ff285a7a5ee26c",
-    "url": "/vehicle-service-booking/static/js/4.87bacca7.chunk.js.LICENSE.txt"
+    "url": "/vehicle-service-booking/static/js/4.83e7d11b.chunk.js.LICENSE.txt"
   },
   {
     "revision": "12e291bcc46e4a84ce84",
@@ -252,7 +252,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/vehicle-service-booking/static/js/9.f3a38725.chunk.js"
   },
   {
-    "revision": "3929d2857255c7e28824",
+    "revision": "86a174bce154d484968a",
     "url": "/vehicle-service-booking/static/js/main.d9320ae0.chunk.js"
   },
   {
